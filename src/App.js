@@ -1,15 +1,17 @@
 import './App.css';
-import LatestRelaese from './Component/LatestRelaese';
+import LatestRelease from './Component/LatestRelease';
+
 import NavBar from './Component/NavBar';
 import WelcomeHero from './Component/WelcomeCarosel/WelcomeHero';
 import MyFooter from './Component/footer/MyFooter';
+
 
 function App() {
   return (
     <>
     < NavBar />
     < WelcomeHero />
-    < LatestRelaese />
+    < LatestRelease />
     < MyFooter />
     </>
   );
