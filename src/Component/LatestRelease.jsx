@@ -3,29 +3,12 @@ import {Container, Row, Col} from 'react-bootstrap';
 import SingleBook from './SingleBook';
 import { nanoid } from 'nanoid';
 
-const LatestRelease = () => {
-
-    const [arrayBook, setArrayBook]= useState([]);
-    console.log(setArrayBook);
-    
-    const getBookApi= async () => {
-        try {
-            const data = await fetch('https://epibooks.onrender.com/');
-            const response = data.json();
-            setArrayBook(response);
-        } catch (error) {
-        }
-    }
-
-    useEffect(() => {
-		getBookApi();
-	}, []);
-
+const LatestRelease = ({arrayBook}) => {
 
   return (
-    <Container>
-        <Row>
-            <Col>
+      <Container className='my-5'>
+        <Row >
+            <Col  className='d-flex flex-wrap gap-3 justify-content-center'>
                 {arrayBook && arrayBook.map((book) => {
                     return(
                         <SingleBook
