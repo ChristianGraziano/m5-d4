@@ -74,6 +74,8 @@ const NavBar = ({arrayBook, setArrayBook, getBookApi}) => {
               />
               <Button className='ms-2' type='submit' variant="outline-success bg-info" >Cerca</Button>
             </Form>
+
+            <Button className="p-2 bg-warning mx-3 border-0">Dark/light</Button>
     </Nav>
   </Navbar.Collapse>
 </Container>

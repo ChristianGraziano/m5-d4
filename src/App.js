@@ -39,11 +39,15 @@ function App() {
   console.log(setArrayBook);
       
       const getBookApi= async () => {
-          try {
+        
+        try {
               const data = await fetch('https://epibooks.onrender.com/');
               const response = await data.json();
               setArrayBook(response);
+              
           } catch (error) {
+            <SpinnerLoading/>
+            console.log(error);
           }
       }
   
@@ -60,7 +64,7 @@ function App() {
     <ThemeProvider>
       < NavBar />
       < WelcomeHero />
-      < SpinnerLoading />
+      
       < LatestRelease arrayBook={arrayBook} />
       < MyFooter />
     </ThemeProvider>
