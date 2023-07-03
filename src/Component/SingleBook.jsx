@@ -14,13 +14,17 @@ const SingleBook = ({ img, asin, title, price, category }) => {
 
 return (
 		<>
-			 <Card style={{ width: '18rem' }} >
+			 <Card style={{ width: '15rem' }} >
                 <Card.Img variant="top" className="h-75" src={img} />
                 <Card.Body className="text-center">
                     <Card.Title>{title}</Card.Title>
                     <Card.Title>{price}</Card.Title>
                     <Card.Title>{category}</Card.Title>
                     <Card.Title>{asin}</Card.Title>
+                    <Link>
+                    <Button></Button>
+                    </Link>
+                    
                     <Button onClick={toggleCommentModal} variant="primary">Commenti</Button>
                 </Card.Body>
             </Card>
