@@ -1,14 +1,25 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Container, Row, Col} from 'react-bootstrap';
 import SingleBook from './SingleBook';
 import { nanoid } from 'nanoid';
 
+
+
+import { ThemeContext } from '../App.js';
 const LatestRelease = ({arrayBook}) => {
 
+    const {theme, toggleTheme} = useContext(ThemeContext)
   return (
-      <Container className='my-5'>
+      <Container className='my-5 bg-white' >
         <Row >
-            <Col  className='d-flex flex-wrap gap-3 justify-content-center'>
+           
+            <Col 
+             style={{ maxHeight: '1000px' }}
+            lg={10}
+            md={8}
+            sm={6}
+            xs={6} 
+            className='d-flex flex-wrap gap-3 justify-content-center overflow-auto'>
                 {arrayBook && arrayBook.map((book) => {
                     return(
                         <SingleBook
@@ -21,11 +32,17 @@ const LatestRelease = ({arrayBook}) => {
                         
                         />
                     )
-                })};
+                })}
+            </Col>
+            <Col className=''>
+                <div className='tex-center'>
+                    <h3>Comment area</h3>
+                    <span className=' text-center'>click the book to see the comments</span>
+                </div>
             </Col>
         </Row>
     </Container>
-  );
+  )
 }
 
-export default LatestRelease;
+export default LatestRelease

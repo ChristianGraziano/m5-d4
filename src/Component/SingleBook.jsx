@@ -26,7 +26,7 @@ return (
             </Card>
            {modalVisible && (
             <CommentModal asin={asin} close={toggleCommentModal} />
-           )};
+           )}
         
         </>
 			

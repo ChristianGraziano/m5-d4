@@ -1,15 +1,15 @@
 export const carouselItems = [
 	{
 		className: "d-block w-100",
-		src: "https://i.imgur.com/zsUvU5T.png",
+		src: "https://davidemancinelli.it/wp-content/uploads/2020/05/migliori-libri-umberto-eco.jpg",
 		alt: "First slide",
-		captionTitle: "First Slide Title",
+		captionTitle: "Benvenuti",
 		captionDescription: "Lorem ipsum dolos sit amet consecutor dolor sit amet",
 		id: 1,
 	},
 	{
 		className: "d-block w-100",
-		src: "https://cdn.pixabay.com/photo/2018/01/12/10/19/fantasy-3077928__480.jpg",
+		src: "https://media.gqitalia.it/photos/6495e53afca219abf890d712/16:9/w_2560%2Cc_limit/libri.jpeg",
 		alt: "First slide",
 		captionTitle: "First Slide Title",
 		captionDescription: "Lorem ipsum dolos sit amet consecutor dolor sit amet",

@@ -1,17 +1,42 @@
 import './App.css';
 import LatestRelease from './Component/LatestRelease';
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect, createContext} from 'react';
 import NavBar from './Component/NavBar';
 import WelcomeHero from './Component/WelcomeCarosel/WelcomeHero';
 import MyFooter from './Component/footer/MyFooter';
+import SpinnerLoading from './Component/SpinnerLoading';
+import { nanoid } from 'nanoid';
+
+// Contesto del thema Dark/light
 
 
+const ThemeContext = createContext();
 
+const ThemeProvider =({children}) => {
+    const [theme, setTheme] = useState("light");
+
+    const toggleTheme = () => {
+      setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
+    
+
+    return (
+          <ThemeContext.Provider value={{theme, toggleTheme}}>
+              {children}
+          </ThemeContext.Provider>
+    );
+}  
+
+export {ThemeContext, ThemeProvider}
+
+
+  // APP
+  
 function App() {
   
   //funzione per chiamare api dei libri
   const [arrayBook, setArrayBook]= useState([]);
-      console.log(setArrayBook);
+  console.log(setArrayBook);
       
       const getBookApi= async () => {
           try {
@@ -26,12 +51,19 @@ function App() {
       getBookApi();
     }, []);
   
+    
+ 
+  
+    
     return (
     <>
-    < NavBar />
-    < WelcomeHero />
-    < LatestRelease arrayBook={arrayBook} />
-    < MyFooter />
+    <ThemeProvider>
+      < NavBar />
+      < WelcomeHero />
+      < SpinnerLoading />
+      < LatestRelease arrayBook={arrayBook} />
+      < MyFooter />
+    </ThemeProvider>
     </>
   );
 }
