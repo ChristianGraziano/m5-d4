@@ -1,34 +1,15 @@
 import './App.css';
 import LatestRelease from './Component/LatestRelease';
-import React,{useState,useEffect, createContext} from 'react';
+import React,{useState,useEffect,createContext,} from 'react';
 import NavBar from './Component/NavBar';
 import WelcomeHero from './Component/WelcomeCarosel/WelcomeHero';
 import MyFooter from './Component/footer/MyFooter';
 import SpinnerLoading from './Component/SpinnerLoading';
-import { nanoid } from 'nanoid';
-
-// Contesto del thema Dark/light
 
 
-const ThemeContext = createContext();
+ 
 
-const ThemeProvider =({children}) => {
-    const [theme, setTheme] = useState("light");
-
-    const toggleTheme = () => {
-      setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
-    };
-    
-
-    return (
-          <ThemeContext.Provider value={{theme, toggleTheme}}>
-              {children}
-          </ThemeContext.Provider>
-    );
-}  
-
-export {ThemeContext, ThemeProvider}
-
+ export const getBooksContext =createContext()
 
   // APP
   
@@ -61,13 +42,15 @@ function App() {
     
     return (
     <>
-    <ThemeProvider>
-      < NavBar />
-      < WelcomeHero />
-      
-      < LatestRelease arrayBook={arrayBook} />
-      < MyFooter />
-    </ThemeProvider>
+      <getBooksContext>
+        < NavBar />
+        < WelcomeHero />
+        
+        < LatestRelease arrayBook={arrayBook} />
+        < MyFooter />
+      </getBooksContext>
+
+    
     </>
   );
 }

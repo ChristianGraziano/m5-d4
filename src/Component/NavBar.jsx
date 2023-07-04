@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useContext} from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,27 +7,32 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import { getBooksContext } from "../App";
 
 
 
+const NavBar = ({getBookApi}) => {
+  
 
-const NavBar = ({arrayBook, setArrayBook, getBookApi}) => {
+  const books = useContext(getBooksContext);
+  console.log(books);
   
   const [searchTerm, setSearchTerm] = useState("");
-
-	const filterBooks = (e) => {
+  const [filteredBook, setFilteredBook] = useState([])
+	
+  const SearchBook = (e) => {
 		e.preventDefault();
+		let filterBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-		const filterBooks = arrayBook.filter((book) =>
-			book.title.toLowerCase().includes(searchTerm.toLowerCase())
-		);
+  setFilteredBook(filterBooks);
+};
 
-		setArrayBook(filterBooks);
-	};
 
 	const handleResetSearchBar = (value) => {
 		if (value == "") {
-			getBookApi();
+			getBookApi(filteredBook);
 		}
 
 		setSearchTerm(value);
@@ -65,10 +70,10 @@ const NavBar = ({arrayBook, setArrayBook, getBookApi}) => {
       </NavDropdown>
     </Nav>
     <Nav>
-      
-            <Form className="d-flex" onSubmit={filterBooks} >
+        
+            <Form className="d-flex" onSubmit={SearchBook} >
               <Form.Control 
-                onChange={handleResetSearchBar}
+                onChange={(e) => {handleResetSearchBar(e.target.value)}}
                 type="text"
                 placeholder="Search"
               />

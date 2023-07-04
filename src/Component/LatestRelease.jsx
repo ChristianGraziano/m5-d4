@@ -1,14 +1,14 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect, } from 'react'
 import {Container, Row, Col} from 'react-bootstrap';
 import SingleBook from './SingleBook';
 import { nanoid } from 'nanoid';
 
 
 
-import { ThemeContext } from '../App.js';
+
 const LatestRelease = ({arrayBook}) => {
 
-    const {theme, toggleTheme} = useContext(ThemeContext)
+   
   return (
       <Container className='my-5 bg-white' >
         <Row >

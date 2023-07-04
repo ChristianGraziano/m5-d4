@@ -21,9 +21,7 @@ return (
                     <Card.Title>{price}</Card.Title>
                     <Card.Title>{category}</Card.Title>
                     <Card.Title>{asin}</Card.Title>
-                    <Link>
-                    <Button></Button>
-                    </Link>
+                   
                     
                     <Button onClick={toggleCommentModal} variant="primary">Commenti</Button>
                 </Card.Body>
