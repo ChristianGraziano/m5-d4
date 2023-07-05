@@ -5,7 +5,8 @@ import NavBar from "./Component/NavBar";
 import WelcomeHero from "./Component/WelcomeCarosel/WelcomeHero";
 import MyFooter from "./Component/footer/MyFooter";
 import SpinnerLoading from "./Component/SpinnerLoading";
-import { ThemeProvider } from "react-bootstrap";
+
+import { ThemeProvider } from "./context/ThemeProvider";
 
 export const getBooksContext = createContext();
 

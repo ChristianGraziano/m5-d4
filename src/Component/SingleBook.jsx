@@ -13,7 +13,7 @@ const SingleBook = ({ img, asin, title, price, category }) => {
 
   return (
     <>
-      <Card className="card-style shadow">
+      <Card className="card-style">
         <Card.Img variant="top" className="img-card" src={img} />
         <Card.Body className="text-center d-flex flex-column justify-content-between">
           <Card.Title style={{ fontSize: "1.1rem" }}>{title}</Card.Title>

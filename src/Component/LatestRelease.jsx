@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import SingleBook from "./SingleBook";
 import { nanoid } from "nanoid";
 
+import { ThemeContext } from "../context/ThemeProvider"; //importato il contesto tema
+
 const LatestRelease = ({ arrayBook }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <Container className="my-5 bg-white">
+    <Container className="my-5">
       <Row>
         <Col
           style={{ maxHeight: "1000px" }}
@@ -29,8 +33,8 @@ const LatestRelease = ({ arrayBook }) => {
               );
             })}
         </Col>
-        <Col className="">
-          <div className="tex-center">
+        <Col className={`${theme ? "text-white" : "text-black"}`}>
+          <div className="text-center">
             <h3>Comment area</h3>
             <span className=" text-center">
               click the book to see the comments

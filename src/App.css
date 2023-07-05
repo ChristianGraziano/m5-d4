@@ -1,9 +1,9 @@
 .light {
-    background-color: white;
-    color:black
+  background-color: white;
+  color: black;
 }
 
 .dark {
-    background-color: rgb(15, 15, 15);
-    color: white;
+  background-color: rgb(15, 15, 15);
+  color: white;
 }

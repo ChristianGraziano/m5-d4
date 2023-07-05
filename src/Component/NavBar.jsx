@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -7,14 +7,25 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import { getBooksContext } from "../App"; // context importato
-import { ThemeContext } from "../context/ThemeProvider";
+import "../index.css";
+
+import { getBooksContext } from "../App"; // context importato per chiamata api libri
+
+import { ThemeContext } from "../context/ThemeProvider"; //importato il contesto tema
 
 const NavBar = () => {
   const myBooks = useContext(getBooksContext);
-  const themeContext = useContext(ThemeContext);
-  // const { theme, toggleTheme } = themeContext;
-  console.log(themeContext);
+
+  const { theme, toggleTheme } = useContext(ThemeContext); // context tema
+  console.log(theme);
+
+  useEffect(() => {
+    if (theme) {
+      document.body.className = "dark-mode";
+    } else {
+      document.body.className = "light-mode";
+    }
+  }, [theme]);
 
   const { arrayBook, setArrayBook, getBookApi } = myBooks;
 
@@ -40,8 +51,8 @@ const NavBar = () => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      bg="dark"
-      data-bs-theme="dark"
+      className={`${theme ? "bg-dark" : "bg-light"}`} // ternario per dare il tema dark/light
+      data-bs-theme={`${theme ? "dark" : "light"}`}
       sticky="top"
     >
       <Container>
@@ -80,7 +91,12 @@ const NavBar = () => {
               </Button>
             </Form>
 
-            <Button className="p-2 bg-warning mx-3 border-0">Dark/light</Button>
+            <Button
+              onClick={toggleTheme}
+              className="p-2 bg-warning mx-3 border-0"
+            >
+              Dark/light
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

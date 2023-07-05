@@ -1,21 +1,22 @@
-// Contesto del thema Dark/light
-import React, {createContext,useState} from "react";
+import React, { createContext, useState } from "react";
 
-const ThemeContext = createContext();
+// Crea il contesto di tema
+export const ThemeContext = createContext();
 
-const ThemeProvider =({children}) => {
-    const [theme, setTheme] = useState("light");
+// Definisci il tuo provider di tema
+export const ThemeProvider = ({ children }) => {
+  // Definisci lo stato del tema, con "light" come valore predefinito
+  const [theme, setTheme] = useState(false);
 
-    const toggleTheme = () => {
-      setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
-    };
-    
+  // Funzione per cambiare il tema
+  const toggleTheme = () => {
+    setTheme(!theme);
+  };
 
-    return (
-          <ThemeContext.Provider value={{theme, toggleTheme}}>
-              {children}
-          </ThemeContext.Provider>
-    );
-}  
-
-export  {ThemeContext, ThemeProvider}
+  // Passa lo stato del tema e la funzione per cambiarlo come valore del contesto
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
