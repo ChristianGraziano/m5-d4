@@ -9,7 +9,7 @@ const LatestRelease = ({ arrayBook }) => {
       <Row>
         <Col
           style={{ maxHeight: "1000px" }}
-          lg={10}
+          lg={8}
           md={8}
           sm={6}
           xs={6}

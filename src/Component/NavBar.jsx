@@ -37,7 +37,13 @@ const NavBar = () => {
     }
   };
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" data-bs-theme="dark">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="dark"
+      data-bs-theme="dark"
+      sticky="top"
+    >
       <Container>
         <Navbar.Brand href="#home">Epic Books</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
