@@ -1,50 +1,21 @@
-import "./App.css";
-import LatestRelease from "./Component/LatestRelease";
-import React, { useState, useEffect, createContext } from "react";
-import NavBar from "./Component/NavBar";
-import WelcomeHero from "./Component/WelcomeCarosel/WelcomeHero";
-import MyFooter from "./Component/footer/MyFooter";
-import SpinnerLoading from "./Component/SpinnerLoading";
+import React from "react";
+import Homepage from "./pages/Homepage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
+import BookDetails from "./Component/BookDetails";
 
-import { ThemeProvider } from "./context/ThemeProvider";
-
-export const getBooksContext = createContext();
-
-// APP
-
-function App() {
-  //funzione per chiamare api dei libri
-  const [arrayBook, setArrayBook] = useState([]);
-  console.log(setArrayBook);
-
-  const getBookApi = async () => {
-    try {
-      const data = await fetch("https://epibooks.onrender.com/");
-      const response = await data.json();
-      setArrayBook(response);
-    } catch (error) {
-      <SpinnerLoading />;
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getBookApi();
-  }, []);
-
+const App = () => {
   return (
-    <>
-      <getBooksContext.Provider value={{ arrayBook, setArrayBook, getBookApi }}>
-        <ThemeProvider>
-          <NavBar />
-          <WelcomeHero />
-          {!arrayBook && <SpinnerLoading />}
-          <LatestRelease arrayBook={arrayBook} />
-          <MyFooter />
-        </ThemeProvider>
-      </getBooksContext.Provider>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Homepage />} />
+
+        <Route path="/book/:asin" element={<BookDetails />} />
+
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

@@ -3,18 +3,21 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useNavigate } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import "../index.css";
 
-import { getBooksContext } from "../App"; // context importato per chiamata api libri
+import { getBooksContext } from "../context/GetBookProvider"; // context importato per chiamata api libri
 
 import { ThemeContext } from "../context/ThemeProvider"; //importato il contesto tema
 
 const NavBar = () => {
   const myBooks = useContext(getBooksContext);
+
+  const navigate = useNavigate();
 
   const { theme, toggleTheme } = useContext(ThemeContext); // context tema
   console.log(theme);
@@ -47,6 +50,10 @@ const NavBar = () => {
       setSearchTerm(value); // qui che viene richiamato il value dell'input
     }
   };
+
+  const redirectedHomepageClick = () => {
+    navigate("/");
+  };
   return (
     <Navbar
       collapseOnSelect
@@ -56,7 +63,9 @@ const NavBar = () => {
       sticky="top"
     >
       <Container>
-        <Navbar.Brand href="#home">Epic Books</Navbar.Brand>
+        <Navbar.Brand href="#home" onClick={redirectedHomepageClick}>
+          Epic Books
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

@@ -1,0 +1,29 @@
+.logo {
+  width: 4rem;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+
+.font-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(-7.5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.swing-animation {
+  animation: swing 2s infinite ease-in-out;
+}
