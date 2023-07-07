@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import SingleBook from "./SingleBook";
 import { nanoid } from "nanoid";
 import SpinnerLoading from "./SpinnerLoading";
+import CommentArea from "./Commenti/CommentArea";
 
 import { ThemeContext } from "../context/ThemeProvider"; //importato il contesto tema
 
@@ -40,12 +41,7 @@ const LatestRelease = () => {
               })}
           </Col>
           <Col className={`${theme ? "text-white" : "text-black"}`}>
-            <div className="text-center">
-              <h3>Comment area</h3>
-              <span className=" text-center">
-                click the book to see the comments
-              </span>
-            </div>
+            <CommentArea />
           </Col>
         </Row>
       </Container>

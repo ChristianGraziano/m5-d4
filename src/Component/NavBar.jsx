@@ -70,7 +70,7 @@ const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">Contati</Nav.Link>
+            <Nav.Link href="#">Contatti</Nav.Link>
             <NavDropdown title="Categories" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1" className="fw-bold">
                 Fantasy
