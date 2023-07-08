@@ -41,7 +41,13 @@ const LatestRelease = () => {
               })}
           </Col>
           <Col className={`${theme ? "text-white" : "text-black"}`}>
-            <CommentArea />
+            <>
+              <div className="text-center mb-5">
+                <h2>Comment Area</h2>
+                <span>Click the image of book for see the comments..</span>
+              </div>
+              <CommentArea />
+            </>
           </Col>
         </Row>
       </Container>

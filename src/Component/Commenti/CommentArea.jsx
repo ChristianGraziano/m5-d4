@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ListGroup } from "react-bootstrap";
-
+import "./styleCommentArea.css";
+import RemoveComment from "./RemoveComment";
 import { SelectedContext } from "../../context/SelectedContext";
+import SpinnerLoading from "../SpinnerLoading";
+import AddComment from "./AddComment";
 
 const CommentArea = (asin) => {
   const [bookComments, setBookComments] = useState(null);
-  const { selected } = useContext(SelectedContext);
+  const [loading, setLoading] = useState(false);
 
+  const { selected } = useContext(SelectedContext);
+  console.log(selected);
   const getCommentArea = async () => {
+    setLoading(true);
     try {
       const data = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/${selected.asin}`,
@@ -21,6 +27,7 @@ const CommentArea = (asin) => {
 
       const response = await data.json();
       setBookComments(response);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -33,25 +40,34 @@ const CommentArea = (asin) => {
   }, [selected.asin]);
 
   return (
-    <ListGroup
-      className="d-flex justify-content-between align-items-start"
-      as="ol"
-      numbered
-    >
-      {bookComments &&
-        bookComments.map((comment) => (
-          <ListGroup.Item key={comment._id}>
-            <div className="ms-2 me-auto">
-              <div>{comment.comment}</div>
-              <div>Voto: {comment.rate}</div>
-              <div>Autore: {comment.author}</div>
-            </div>
+    <>
+      <AddComment />
 
-            {/* <DeleteComment getMethod={getCommentModal} asin={comment._id} />
-                                            <ModificaComment getMethod={getCommentModal} comment={comment}  /> */}
-          </ListGroup.Item>
-        ))}
-    </ListGroup>
+      {loading ? (
+        <SpinnerLoading />
+      ) : (
+        <ListGroup
+          className="d-flex justify-content-between align-items-center gap-3"
+          as="ol"
+          numbered
+        >
+          {bookComments &&
+            bookComments.map((comment) => (
+              <ListGroup.Item
+                className="bg bg-body-secondary shadow "
+                key={comment._id}
+              >
+                <div className="m-2 w-100 bg bg-body-secondary">
+                  <div>{comment.comment}</div>
+                  <div>Voto: {comment.rate}</div>
+                  <div>Autore: {comment.author}</div>
+                </div>
+                <RemoveComment commentId={comment._id} />
+              </ListGroup.Item>
+            ))}
+        </ListGroup>
+      )}
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const useFetch = (endpoint) => {
-  const [loading, setLoading] = useState("null");
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
 
