@@ -10,7 +10,7 @@ const WelcomeHero = () => {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center gap-2 mt-5">
-        <h1 className="text-center font-title">Epik Books</h1>{" "}
+        <h1 className="text-center font-title">Epic Books</h1>{" "}
         <img className="logo swing-animation" src={logo} alt="epikBooks_logo" />
       </div>
 

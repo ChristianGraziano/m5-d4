@@ -4,10 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../images/logo_epic_book.png";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+import "./navbar-style.css";
 import "../index.css";
 
 import { getBooksContext } from "../context/GetBookProvider"; // context importato per chiamata api libri
@@ -64,13 +64,16 @@ const NavBar = () => {
     >
       <Container>
         <Navbar.Brand href="#home" onClick={redirectedHomepageClick}>
+          <img src={logo} alt="logo" className="logo-nav me-2" />
           Epic Books
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">Contatti</Nav.Link>
+            <Nav.Link href="#" onClick={redirectedHomepageClick}>
+              Home
+            </Nav.Link>
+            <Nav.Link href="#footer">Contatti</Nav.Link>
             <NavDropdown title="Categories" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1" className="fw-bold">
                 Fantasy

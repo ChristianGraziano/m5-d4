@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import { ListGroup } from "react-bootstrap";
 import "./styleCommentArea.css";
 import RemoveComment from "./RemoveComment";
@@ -6,12 +6,15 @@ import { SelectedContext } from "../../context/SelectedContext";
 import SpinnerLoading from "../SpinnerLoading";
 import AddComment from "./AddComment";
 
+export const getCommentContext = createContext();
+
 const CommentArea = (asin) => {
   const [bookComments, setBookComments] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const { selected } = useContext(SelectedContext);
   console.log(selected);
+
   const getCommentArea = async () => {
     setLoading(true);
     try {
@@ -41,32 +44,36 @@ const CommentArea = (asin) => {
 
   return (
     <>
-      <AddComment />
+      <getCommentContext.Provider value={{ bookComments, getCommentArea }}>
+        <div className="div-commentArea">
+          {bookComments && <AddComment />}
 
-      {loading ? (
-        <SpinnerLoading />
-      ) : (
-        <ListGroup
-          className="d-flex justify-content-between align-items-center gap-3"
-          as="ol"
-          numbered
-        >
-          {bookComments &&
-            bookComments.map((comment) => (
-              <ListGroup.Item
-                className="bg bg-body-secondary shadow "
-                key={comment._id}
-              >
-                <div className="m-2 w-100 bg bg-body-secondary">
-                  <div>{comment.comment}</div>
-                  <div>Voto: {comment.rate}</div>
-                  <div>Autore: {comment.author}</div>
-                </div>
-                <RemoveComment commentId={comment._id} />
-              </ListGroup.Item>
-            ))}
-        </ListGroup>
-      )}
+          {loading ? (
+            <SpinnerLoading />
+          ) : (
+            <ListGroup
+              className="d-flex justify-content-between align-items-center gap-3"
+              as="ol"
+              numbered
+            >
+              {bookComments &&
+                bookComments.map((comment) => (
+                  <ListGroup.Item
+                    className="bg bg-body-secondary shadow "
+                    key={comment._id}
+                  >
+                    <div className="m-2 w-100 bg bg-body-secondary">
+                      <div>{comment.comment}</div>
+                      <div>Voto: {comment.rate}</div>
+                      <div>Autore: {comment.author}</div>
+                    </div>
+                    <RemoveComment commentId={comment._id} />
+                  </ListGroup.Item>
+                ))}
+            </ListGroup>
+          )}
+        </div>
+      </getCommentContext.Provider>
     </>
   );
 };

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
+import { getCommentContext } from "./CommentArea";
+
 const RemoveComment = ({ commentId }) => {
+  const { getCommentArea } = useContext(getCommentContext);
+
   const deleteComment = async () => {
     try {
       const data = await fetch(
@@ -17,15 +21,20 @@ const RemoveComment = ({ commentId }) => {
           },
         }
       );
+      getCommentArea();
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <Button className="btn btn-dark m-1" onClick={deleteComment}>
-      <FontAwesomeIcon icon={faTrash} />
-    </Button>
+    <>
+      <div className="d-flex justify-content-end">
+        <Button className="btn btn-dark m-1" onClick={deleteComment}>
+          <FontAwesomeIcon icon={faTrash} />
+        </Button>
+      </div>
+    </>
   );
 };
 

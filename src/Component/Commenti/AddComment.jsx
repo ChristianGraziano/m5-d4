@@ -7,10 +7,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { nanoid } from "nanoid";
 
 import { SelectedContext } from "../../context/SelectedContext";
+import { getCommentContext } from "./CommentArea";
 
 const AddComment = () => {
   const mySelection = useContext(SelectedContext);
   const { selected } = mySelection;
+
+  const { getCommentArea } = useContext(getCommentContext);
 
   const [review, setReview] = useState("");
   const [rate, setRate] = useState("");
@@ -39,6 +42,7 @@ const AddComment = () => {
           },
         }
       );
+      getCommentArea();
     } catch (err) {
       console.log(err);
     }
@@ -56,13 +60,15 @@ const AddComment = () => {
 
   return (
     <>
-      <Button
-        variant="btn btn-warning my-2"
-        onClick={handleShow}
-        className={`${selected.asin !== "vuoto" ? "" : "d-none"}`}
-      >
-        <FontAwesomeIcon icon={faPlus} /> add review
-      </Button>
+      <div className=" d-flex justify-content-center">
+        <Button
+          variant="btn btn-warning my-2"
+          onClick={handleShow}
+          className={`${selected.asin !== "vuoto" ? "" : "d-none"}`}
+        >
+          <FontAwesomeIcon icon={faPlus} /> add review
+        </Button>
+      </div>
       <Modal show={show} onHide={handleClose} centered keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Add new comment</Modal.Title>

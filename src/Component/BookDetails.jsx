@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import SpinnerLoading from "./SpinnerLoading";
-
+import MyFooter from "../Component/footer/MyFooter";
 import NavBar from "./NavBar";
 import Card from "react-bootstrap/Card";
 const BookDetails = () => {
@@ -34,6 +34,7 @@ const BookDetails = () => {
           </Card>
         </div>
       )}
+      <MyFooter />
     </>
   );
 };
